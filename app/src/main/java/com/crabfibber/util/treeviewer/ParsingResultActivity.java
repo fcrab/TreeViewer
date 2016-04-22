@@ -45,8 +45,6 @@ public class ParsingResultActivity extends AppCompatActivity {
 
 			NodeView treeView=new NodeView(this);
 			treeView.setNodeText(vertex.getType());
-			treeView.setMinimumHeight(400);
-			treeView.setMinimumWidth(400);
 			layout.addView(treeView);
 		}
 
