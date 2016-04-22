@@ -7,8 +7,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 
@@ -43,11 +45,24 @@ public class ParsingResultActivity extends AppCompatActivity {
 
 			layout=(RelativeLayout)findViewById(R.id.content);
 
-			NodeView treeView=new NodeView(this);
-			treeView.setNodeText(vertex.getType());
-			layout.addView(treeView);
+			addNodes(null,vertex);
 		}
 
+	}
+
+	private void addNodes(@Nullable View parent, PureNodeInfo node){
+		NodeView treeView=new NodeView(this);
+		treeView.setId(View.generateViewId());
+		treeView.setNodeText(node.getType());
+
+		RelativeLayout.LayoutParams nodeParams= new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		nodeParams.setMargins(50,50,50,50);
+		if(parent !=null){
+
+			nodeParams.addRule(RelativeLayout.BELOW,parent.getId());
+		}
+		//顶点
+		layout.addView(treeView,nodeParams);
 	}
 
 }
