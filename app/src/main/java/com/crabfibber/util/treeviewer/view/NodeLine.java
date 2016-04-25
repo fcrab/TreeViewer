@@ -39,6 +39,12 @@ public class NodeLine extends View{
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		float pxDensity = getContext().getResources().getDisplayMetrics().scaledDensity;
-		setMeasuredDimension((int) (endView.getX()+30*pxDensity), (int) endView.getY());
+//		setMeasuredDimension((int) (endView.getX()+30*pxDensity), (int) endView.getY());
+		if(endView.getX()>startView.getX()){
+			setMeasuredDimension((int) (endView.getX()+30*pxDensity), (int) endView.getY());
+		}else{
+			setMeasuredDimension((int) (startView.getX()+30*pxDensity), (int) endView.getY());
+		}
+
 	}
 }
