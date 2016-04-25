@@ -24,12 +24,21 @@ public class NodeLine extends View{
 		super(context);
 		this.startView=startView;
 		this.endView=endView;
+		paint.setStrokeWidth(2);
 		paint.setColor(Color.BLACK);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		canvas.drawLine(startView.getX()+25,startView.getY()+50,endView.getX()+25,endView.getY()+50,paint);
+		float pxDensity = getContext().getResources().getDisplayMetrics().scaledDensity;
+		canvas.drawLine(startView.getX()+30*pxDensity,startView.getY()+60*pxDensity,endView.getX()+30*pxDensity,endView.getY(),paint);
+	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		float pxDensity = getContext().getResources().getDisplayMetrics().scaledDensity;
+		setMeasuredDimension((int) (endView.getX()+30*pxDensity), (int) endView.getY());
 	}
 }
